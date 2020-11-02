@@ -36,6 +36,13 @@
     "ngx-timer-picker",
     "material-community-components"
   ],
+  "scripts": {
+    "build": "../../node_modules/.bin/tsc -p tsconfig.schematics.json",
+    "copy:schemas": "cp --parents schematics/*/schema.json ../../dist/material-community-components/",
+    "copy:files": "cp --parents -p schematics/*/files/** ../../dist/material-community-components/",
+    "copy:collection": "cp schematics/collection.json ../../dist/material-community-components/schematics/collection.json",
+    "postbuild": "npm run copy:schemas && npm run copy:files && npm run copy:collection"
+  },
   "peerDependencies": {
     "@angular/core": ">= 9",
     "@angular/common": ">= 9",
@@ -44,5 +51,9 @@
     "@angular/forms": ">= 9",
     "@angular/material": ">= 9",
     "@thebespokepixel/es-tinycolor": "^2.1.1"
+  },
+  "schematics": "./schematics/collection.json",
+  "ng-add": {
+    "save": "dependencies"
   }
 }
